@@ -1056,9 +1056,6 @@ public class Client {
 				// Update player ready state
 				boolean isReady = (Boolean) message.get("isReady");
 				getPlayer(playerID).setReady(isReady);
-				
-				//TODO changed
-				handler.playerReady(playerID, isReady);
 			} else if (topic.equals("start")) {
 				// Handle start
 				started();

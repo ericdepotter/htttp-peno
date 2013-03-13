@@ -43,16 +43,6 @@ public interface Handler {
 	 *            The player identifier.
 	 */
 	public void playerLeft(String playerID);
-	
-	/**
-	 * Invoked when a player changed his status.
-	 * 
-	 * @param playerID
-	 *            The player identifier.
-	 * @param isReady
-				  The status of the player.
-	 */
-	public void playerReady(String playerID, boolean isReady);
 
 	/**
 	 * Invoked when a player updates its position.
