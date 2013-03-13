@@ -1,25 +1,31 @@
 package peno.htttp.impl;
 
-import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import com.rabbitmq.client.Channel;
 
 public class RequestProvider {
 
 	private final AtomicInteger counter = new AtomicInteger();
-	private final String queue;
 
-	public RequestProvider(Channel channel) throws IOException {
-		queue = channel.queueDeclare().getQueue();
-	}
+	private final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1, factory);
+	private static final ThreadFactory factory = new NamedThreadFactory("HTTTP-Request-%d");
 
 	public int nextRequestId() {
 		return counter.incrementAndGet();
 	}
 
-	public String getQueue() {
-		return queue;
+	public ScheduledFuture<?> scheduleTimeout(Runnable command, long timeout) {
+		return executor.schedule(command, timeout, TimeUnit.MILLISECONDS);
+	}
+
+	public void terminate() {
+		if (!executor.isShutdown()) {
+			executor.shutdown();
+		}
 	}
 
 }
