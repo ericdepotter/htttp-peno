@@ -438,6 +438,22 @@ public class Client {
 	public boolean isReady() {
 		return getLocalPlayer().isReady();
 	}
+	
+	/**
+	 * Check if the given player is ready to play.
+	 * 
+	 * @param playerID
+	 * 			  The id of the player.
+	 */
+	public boolean isReady(String playerID) {
+		synchronized (players) {
+			if (players.hasConfirmed(playerID)) {
+				return players.getConfirmed(playerID).isReady();
+			}
+		}
+			
+		return false;
+	}
 
 	/**
 	 * Set whether the local player is ready to play.
