@@ -31,9 +31,16 @@ public abstract class Requester extends Consumer {
 
 		// Create request
 		requestId = "" + provider.nextRequestId();
-		AMQP.BasicProperties props = new AMQP.BasicProperties().builder().timestamp(new Date())
+		/**AMQP.BasicProperties props = new AMQP.BasicProperties().builder().timestamp(new Date())
 				.contentType("text/plain").deliveryMode(1).expiration(timeout + "").correlationId(requestId)
-				.replyTo(getQueue()).build();
+				.replyTo(getQueue()).build();*/
+		AMQP.BasicProperties props = new AMQP.BasicProperties();
+		props.setTimestamp(new Date());
+		props.setContentType("text/plain");
+		props.setDeliveryMode(1);
+		props.setExpiration(timeout + "");
+		props.setCorrelationId(requestId);
+		props.setReplyTo(getQueue());
 
 		// Publish
 		getChannel().basicPublish(exchange, topic, props, message);
