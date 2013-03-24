@@ -11,6 +11,15 @@ public interface Constants {
 	public static final String PLAYER_ID = "playerID";
 	public static final String CLIENT_ID = "clientID";
 	public static final String PLAYER_NUMBER = "playerNumber";
+	public static final String TEAM_NUMBER = "teamNumber";
+
+	/*
+	 * Seesaw
+	 */
+	public static final String SEESAW_LOCK = "seesawLock";
+	public static final String SEESAW_UNLOCK = "seesawUnlock";
+
+	public static final String SEESAW_BARCODE = "barcode";
 
 	/*
 	 * Join
@@ -42,11 +51,12 @@ public interface Constants {
 	public static final String READY = "ready";
 
 	/*
-	 * Start/stop/pause
+	 * Game
 	 */
 	public static final String START = "start";
 	public static final String STOP = "stop";
 	public static final String PAUSE = "pause";
+	public static final String WIN = "win";
 
 	/*
 	 * Reports
@@ -68,8 +78,6 @@ public interface Constants {
 	 */
 	public static final String TEAM_PING = "ping";
 	public static final String TEAM_TILE = "tile";
-	public static final String TEAM_MEET = "meet";
-	public static final String TEAM_MATCH = "match";
 
 	public static final String TILES = "tiles";
 

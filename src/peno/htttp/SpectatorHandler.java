@@ -36,4 +36,49 @@ public interface SpectatorHandler extends GameHandler {
 	 */
 	public void playerUpdate(String playerID, int playerNumber, double x, double y, double angle, boolean foundObject);
 
+	/**
+	 * Invoked when a player is about to travel over a seesaw.
+	 * 
+	 * <p>
+	 * The player provides the barcode that has been read in front of the
+	 * seesaw. This uniquely identifies the seesaw that he is traversing as well
+	 * as the travel direction.
+	 * </p>
+	 * 
+	 * @param playerID
+	 *            The player identifier.
+	 * @param playerNumber
+	 *            The player number.
+	 * @param barcode
+	 *            The barcode at the side of the seesaw where the player starts
+	 *            traveling.
+	 */
+	public void lockedSeesaw(String playerID, int playerNumber, int barcode);
+
+	/**
+	 * Invoked when a player is done traveling over a seesaw.
+	 * 
+	 * <p>
+	 * The player provides the barcode that has been read in front of the
+	 * seesaw. This uniquely identifies the seesaw that he traversed as well as
+	 * the travel direction.
+	 * </p>
+	 * 
+	 * <p>
+	 * Listening spectators simulating the world should flip the state of the
+	 * seesaw when the seesaw is unlocked. That is, after unlocking the seesaw,
+	 * the side from which the player started traversing becomes closed and the
+	 * side on which he ended up becomes open.
+	 * </p>
+	 * 
+	 * @param playerID
+	 *            The player identifier.
+	 * @param playerNumber
+	 *            The player number.
+	 * @param barcode
+	 *            The barcode at the side of the seesaw where the player started
+	 *            traveling.
+	 */
+	public void unlockedSeesaw(String playerID, int playerNumber, int barcode);
+
 }
