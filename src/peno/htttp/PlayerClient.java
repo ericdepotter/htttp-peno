@@ -778,10 +778,20 @@ public class PlayerClient {
 	 *             If not determined yet.
 	 */
 	public int getPlayerNumber() throws IllegalStateException {
+		return getPlayerNumber(getPlayerID());
+	}
+
+	/**
+	 * Get the player number.
+	 * 
+	 * @throws IllegalStateException
+	 *             If not determined yet.
+	 */
+	public int getPlayerNumber(String playerID) throws IllegalStateException {
 		if (!hasPlayerNumber()) {
 			throw new IllegalStateException("Player number not determined yet.");
 		}
-		return playerNumbers.get(getPlayerID());
+		return playerNumbers.get(playerID);
 	}
 
 	/**
